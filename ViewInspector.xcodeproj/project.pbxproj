@@ -953,6 +953,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				009559FF2916A7A300A8D17F /* PBXTargetDependency */,
 			);
 			name = ViewInspectorPackageDescription;
 			productName = ViewInspectorPackageDescription;
@@ -969,6 +970,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				009559FD2916A79C00A8D17F /* PBXTargetDependency */,
 			);
 			name = ViewInspector;
 			packageProductDependencies = (
@@ -1339,6 +1341,14 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		009559FD2916A79C00A8D17F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 009559FC2916A79C00A8D17F /* ComposableArchitecture */;
+		};
+		009559FF2916A7A300A8D17F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 009559FE2916A7A300A8D17F /* ComposableArchitecture */;
+		};
 		OBJ_56 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "ViewInspector::ViewInspectorTests" /* ViewInspectorTests */;
@@ -1701,6 +1711,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		009559FC2916A79C00A8D17F /* ComposableArchitecture */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 00DC04272915BE9600283F83 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
+			productName = ComposableArchitecture;
+		};
+		009559FE2916A7A300A8D17F /* ComposableArchitecture */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 00DC04272915BE9600283F83 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
+			productName = ComposableArchitecture;
+		};
 		00DC04282915BE9600283F83 /* ComposableArchitecture */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 00DC04272915BE9600283F83 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
