@@ -21,6 +21,8 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		0016C9DC2919AD8B00CC0521 /* FullScreenLoaderWithStateStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0016C9DB2919AD8B00CC0521 /* FullScreenLoaderWithStateStore.swift */; };
+		0041A2C8291B1AEF004B53B5 /* IfLetStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0041A2C7291B1AEF004B53B5 /* IfLetStore.swift */; };
 		00DC04292915BE9600283F83 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 00DC04282915BE9600283F83 /* ComposableArchitecture */; };
 		00DC042C2915C19700283F83 /* WithViewStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DC042B2915C19700283F83 /* WithViewStore.swift */; };
 		355B2D57BFF536BCD0B555B8 /* ViewPaddingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355B2B0F773087003E9F5A49 /* ViewPaddingTests.swift */; };
@@ -292,6 +294,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0016C9DB2919AD8B00CC0521 /* FullScreenLoaderWithStateStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullScreenLoaderWithStateStore.swift; sourceTree = "<group>"; };
+		0041A2C7291B1AEF004B53B5 /* IfLetStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IfLetStore.swift; sourceTree = "<group>"; };
 		00DC042B2915C19700283F83 /* WithViewStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithViewStore.swift; sourceTree = "<group>"; };
 		355B2B0F773087003E9F5A49 /* ViewPaddingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewPaddingTests.swift; sourceTree = "<group>"; };
 		520E915B26E64F210090BD1F /* EnvironmentInjection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentInjection.swift; sourceTree = "<group>"; };
@@ -574,6 +578,8 @@
 		00DC042A2915C16800283F83 /* TCA */ = {
 			isa = PBXGroup;
 			children = (
+				0016C9DB2919AD8B00CC0521 /* FullScreenLoaderWithStateStore.swift */,
+				0041A2C7291B1AEF004B53B5 /* IfLetStore.swift */,
 				00DC042B2915C19700283F83 /* WithViewStore.swift */,
 			);
 			path = TCA;
@@ -1091,6 +1097,7 @@
 				52A4A7642621F4AE0063E00B /* Overlay.swift in Sources */,
 				523CD480277C98FC00D4FD3A /* VideoPlayer.swift in Sources */,
 				F60EEBDA2382EED0007DB53A /* HStack.swift in Sources */,
+				0016C9DC2919AD8B00CC0521 /* FullScreenLoaderWithStateStore.swift in Sources */,
 				F64057ED238DB1530029D9BA /* ConditionalContent.swift in Sources */,
 				523CD47A277BC8A700D4FD3A /* TimelineView.swift in Sources */,
 				5220904C27763ABA001A899A /* ControlGroup.swift in Sources */,
@@ -1144,6 +1151,7 @@
 				520E915C26E64F210090BD1F /* EnvironmentInjection.swift in Sources */,
 				F682A016254776F2005F1B70 /* DisclosureGroup.swift in Sources */,
 				F6119FF4254A00FC0000C54A /* LazyHGrid.swift in Sources */,
+				0041A2C8291B1AEF004B53B5 /* IfLetStore.swift in Sources */,
 				F653BDE3255698A6001FA688 /* TupleView.swift in Sources */,
 				F60EEBDE2382EED0007DB53A /* ForEach.swift in Sources */,
 				F6C15A0D254A05A4000240F1 /* LazyVGrid.swift in Sources */,

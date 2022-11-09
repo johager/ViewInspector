@@ -331,6 +331,7 @@ private extension UnwrappedView {
     
     func findParent(condition: ViewSearch.Condition, skipFound: Int
     ) throws -> InspectableView<ViewType.ClassifiedView> {
+//        print("=== UnwrappedView.\(#function) ===")
         var current = parentView
         var counter = skipFound + 1
         while let parent = try? current?.asInspectableView() {
@@ -349,23 +350,30 @@ private extension UnwrappedView {
                    traversal: ViewSearch.Traversal,
                    skipFound: Int
     ) throws -> InspectableView<ViewType.ClassifiedView> {
+//        print("=== UnwrappedView.\(#function) ===")
         var unknownViews: [Any] = []
         var result: UnwrappedView?
         var counter = skipFound + 1
         traversal.search(in: self, condition: condition, stopOnFoundMatch: { view -> Bool in
             counter -= 1
+//            print("--- UnwrappedView.\(#function) - view - counter: \(counter), view: \(view)")
             if counter == 0 {
                 result = view
+//                print("--- UnwrappedView.\(#function) - view - counter: \(counter), return true")
                 return true
             }
+//            print("--- UnwrappedView.\(#function) - view - counter: \(counter), return false")
             return false
         }, identificationFailure: { content in
+//            print("--- UnwrappedView.\(#function) - failure - counter: \(counter), content: \(content)")
             unknownViews.append(content.view)
         })
         if let result = result {
+//            print("--- UnwrappedView.\(#function) - found result")
             return try result.asInspectableView()
         }
         let blockers = blockersDescription(unknownViews)
+//        print("--- UnwrappedView.\(#function) - throw")
         throw InspectionError.searchFailure(skipped: skipFound + 1 - counter, blockers: blockers)
     }
     
@@ -393,12 +401,17 @@ private extension UnwrappedView {
     func breadthFirstTraversal(_ condition: ViewSearch.Condition,
                                stopOnFoundMatch: (UnwrappedView) -> Bool,
                                identificationFailure: (Content) -> Void) {
+//        print("=== UnwrappedView.\(#function) ===")
         var queue: [(isSingle: Bool, children: LazyGroup<UnwrappedView>)] = []
         queue.append((true, .init(count: 1, { _ in self })))
+//        print("--- UnwrappedView.\(#function) - queue: \(queue)")
         while !queue.isEmpty {
             let (isSingle, children) = queue.remove(at: 0)
+//            print("--- UnwrappedView.\(#function) - isSingle: \(isSingle), children: \(children)")
             for offset in 0..<children.count {
+//                print("--- UnwrappedView.\(#function) - offset: \(offset)")
                 guard let view = try? children.element(at: offset) else { continue }
+//                print("--- UnwrappedView.\(#function) - view: \(view)")
                 let viewIndex = view.inspectionIndex ?? 0
                 let index = isSingle && viewIndex == 0 ? nil : viewIndex
                 guard let (identity, instance) = ViewSearch
@@ -406,13 +419,17 @@ private extension UnwrappedView {
                 else {
                     if (try? condition(try view.asInspectableView())) == true,
                        stopOnFoundMatch(view) {
+//                        print("--- UnwrappedView.\(#function) - guard else - stopOnFoundMatch(view)")
                         return
                     }
+//                    print("--- UnwrappedView.\(#function) - guard else - identificationFailure(view.content)")
+//                    print("---\n--- view.content: \(view.content)\n---")
                     identificationFailure(view.content)
                     continue
                 }
                 if (try? condition(try instance.asInspectableView())) == true,
                    stopOnFoundMatch(instance) {
+//                    print("--- UnwrappedView.\(#function) - stopOnFoundMatch(view)")
                     return
                 }
                 if let descendants = try? identity.children(instance),
@@ -435,6 +452,7 @@ private extension UnwrappedView {
     func depthFirstTraversal(_ condition: ViewSearch.Condition,
                              stopOnFoundMatch: (UnwrappedView) -> Bool,
                              identificationFailure: (Content) -> Void) {
+//        print("=== UnwrappedView.\(#function) ===")
         var shouldContinue: Bool = true
         depthFirstRecursion(shouldContinue: &shouldContinue, isSingle: true, offset: 0,
                             condition: condition, stopOnFoundMatch: stopOnFoundMatch,
