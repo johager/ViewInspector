@@ -12,7 +12,7 @@ extension ViewType {
     public struct WithViewStore: KnownViewType {
         public static var typePrefix = "WithViewStore"
         public static var namespacedPrefixes: [String] {
-            ["ComposableArchitecture"]
+            ["ComposableArchitecture", "ComposableArchitecture.WithViewStore"]
         }
     }
 }
@@ -32,8 +32,21 @@ extension ViewType.WithViewStore: SingleViewContent {
 
 extension ViewType.WithViewStore: MultipleViewContent {
     public static func children(_ content: Content) throws -> LazyGroup<Content> {
-//        print("=== WithViewStore.\(#function) ===")
-        return try Inspector.viewsInContainer(view: content.view, medium: content.medium)
+        let file = ViewType.WithViewStore.typePrefix
+//        print("=== \(file).\(#function) ===")
+        
+//        print(">-- --- --- --- -->")
+//        print("--- \(file).\(#function) - content: \(content)")
+//        print(">-- --- --- --- -->")
+        
+        guard let viewWithBodyFromClosure = content.view as? (any ViewWithBodyFromClosure)
+        else { throw InspectionError.viewNotFound(parent: file) }
+        
+//        print(">-- --- --- --- -->")
+//        print("--- \(file).\(#function) - viewWithBodyFromClosure.body: \(viewWithBodyFromClosure.body)")
+//        print(">-- --- --- --- -->")
+        
+        return try Inspector.viewsInContainer(view: viewWithBodyFromClosure.body, medium: content.medium)
     }
 }
 

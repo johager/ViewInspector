@@ -23,6 +23,7 @@ internal extension ViewSearch {
             .init(ViewType.GeometryReader.self),
             .init(ViewType.Group.self), .init(ViewType.GroupBox.self),
             .init(ViewType.HSplitView.self), .init(ViewType.HStack.self),
+            .init(ViewType.IfLetStore.self, genericTypeName: nil),
             .init(ViewType.Image.self),
             .init(ViewType.Label.self),
             .init(ViewType.LazyHGrid.self), .init(ViewType.LazyHStack.self),
@@ -54,6 +55,7 @@ internal extension ViewSearch {
             .init(ViewType.TupleView.self), .init(ViewType.Toolbar.self),
             .init(ViewType.Toolbar.Item.self, genericTypeName: nil),
             .init(ViewType.Toolbar.ItemGroup.self, genericTypeName: nil),
+            .init(ViewType.WithViewStore.self, genericTypeName: nil),
             .init(ViewType.VideoPlayer.self),
             .init(ViewType.ViewModifierContent.self),
             .init(ViewType.VSplitView.self), .init(ViewType.VStack.self),
@@ -96,25 +98,6 @@ internal extension ViewSearch {
             return identity
         }
         
-//        if let inspectable = content.view as? Inspectable {
-//            print("--- ViewSearch.\(#function) - inspectable: \(inspectable)")
-//        } else {
-//            print("--- ViewSearch.\(#function) - inspectable: nil")
-//        }
-        
-        if let viewWithBodyFromClosure = content.view as? (any ViewWithBodyFromClosure) {
-//            print("--- ViewSearch.\(#function) - viewWithBodyFromClosure: \(viewWithBodyFromClosure)")
-            let content = Content(viewWithBodyFromClosure.body)
-//            print("---\n--- ViewSearch.\(#function) - viewWithBodyFromClosure content.view: \(content.view)\n---")
-            let name = Inspector.typeName(value: content.view, generics: .customViewPlaceholder)
-//            print("--- ViewSearch.\(#function) - name: \(name)")
-            return .init(ViewType.View<ViewType.Stub>.self, genericTypeName: name)
-        } else {
-//            print("--- ViewSearch.\(#function) - viewWithBodyFromClosure: nil")
-        }
-        
-//        print("---\n--- ViewSearch.\(#function) - index: \(index)\n---")
-        
         if (try? content.extractCustomView()) != nil,
            let inspectable = content.view as? Inspectable {
             let name = Inspector.typeName(
@@ -134,11 +117,6 @@ internal extension ViewSearch {
     
     static func identifyAndInstantiate(_ view: UnwrappedView, index: Int?) -> (ViewIdentity, UnwrappedView)? {
 //        print("=== ViewSearch.\(#function) ===")
-        if let identity = ViewSearch.identify(view.content) {
-//            print("--- ViewSearch.\(#function) - identity: \(identity)")
-        } else {
-//            print("--- ViewSearch.\(#function) - identity: nil")
-        }
         guard let identity = ViewSearch.identify(view.content),
               let instance = { () -> UnwrappedView? in
                     if view.isUnwrappedSupplementaryChild {
@@ -148,6 +126,24 @@ internal extension ViewSearch {
                 }()
         else { return nil }
         return (identity, instance)
+        
+//        guard let identity = ViewSearch.identify(view.content)
+//        else {
+//            print("--- ViewSearch.\(#function) - identity: nil")
+//            return nil
+//        }
+//
+//        print("--- ViewSearch.\(#function) - identity: \(identity)")
+//
+//        guard let instance = { () -> UnwrappedView? in
+//                    if view.isUnwrappedSupplementaryChild {
+//                        return view
+//                    }
+//                    return try? identity.builder(view.content, view.parentView, index)
+//                }()
+//        else { return nil }
+//
+//        return (identity, instance)
     }
 }
 

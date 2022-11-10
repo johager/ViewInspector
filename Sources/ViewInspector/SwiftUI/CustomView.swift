@@ -54,7 +54,6 @@ internal extension Content {
     }
     
     func extractCustomView() throws -> Content {
-//        print("=== ViewSearch.\(#function) ===")
         let inspectable = try Inspector.cast(value: view, type: Inspectable.self)
         let view = try inspectable.extractContent(environmentObjects: medium.environmentObjects)
         let medium = self.medium.resettingViewModifiers()

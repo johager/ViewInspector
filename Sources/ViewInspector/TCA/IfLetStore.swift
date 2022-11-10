@@ -12,7 +12,7 @@ extension ViewType {
     public struct IfLetStore: KnownViewType {
         public static var typePrefix = "IfLetStore"
         public static var namespacedPrefixes: [String] {
-            ["ComposableArchitecture"]
+            ["ComposableArchitecture", "ComposableArchitecture.IfLetStore"]
         }
     }
 }
@@ -32,8 +32,36 @@ extension ViewType.IfLetStore: SingleViewContent {
 
 extension ViewType.IfLetStore: MultipleViewContent {
     public static func children(_ content: Content) throws -> LazyGroup<Content> {
-//        print("=== IfLetStore.\(#function) ===")
-        return try Inspector.viewsInContainer(view: content.view, medium: content.medium)
+        let file = ViewType.IfLetStore.typePrefix
+//        print("=== \(file).\(#function) ===")
+        
+        // get the IfLetStore content
+        guard let viewWithBodyFromClosure = content.view as? (any ViewWithBodyFromClosure)
+        else { throw InspectionError.viewNotFound(parent: file) }
+        
+//        print(">-- --- --- --- -->")
+//        print("--- \(file).\(#function) - viewWithBodyFromClosure.body: \(viewWithBodyFromClosure.body)")
+//        print(">-- --- --- --- -->")
+        
+        let content = Content(viewWithBodyFromClosure.body)
+        
+//        print(">-- --- --- --- -->")
+//        print("--- \(file).\(#function) - content: \(content)")
+//        print(">-- --- --- --- -->")
+        
+        // get the inner WithViewStore content
+        guard let innerViewWithBodyFromClosure = content.view as? (any ViewWithBodyFromClosure)
+        else {
+            // return the IfLetStore "else" content
+            return try Inspector.viewsInContainer(view: viewWithBodyFromClosure.body, medium: content.medium)
+        }
+        
+//        print(">-- --- --- --- -->")
+//        print("--- \(file).\(#function) - innerViewWithBodyFromClosure.body: \(innerViewWithBodyFromClosure.body)")
+//        print(">-- --- --- --- -->")
+        
+        // return the IfLetStore "if" content
+        return try Inspector.viewsInContainer(view: innerViewWithBodyFromClosure.body, medium: content.medium)
     }
 }
 
@@ -76,7 +104,6 @@ extension InspectableView where View: MultipleViewContent {
         
         guard let innerViewWithBodyFromClosure = content.view as? (any ViewWithBodyFromClosure)
         else {
-//            throw InspectionError.viewNotFound(parent: file)
             // return the IfLetStore "else" content
             return try .init(content, parent: self, index: index, usesContentFromClosure: true)
         }
