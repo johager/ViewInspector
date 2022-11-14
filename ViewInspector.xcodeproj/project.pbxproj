@@ -21,7 +21,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		0016C9DC2919AD8B00CC0521 /* FullScreenLoaderWithStateStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0016C9DB2919AD8B00CC0521 /* FullScreenLoaderWithStateStore.swift */; };
+		001AD9BD2922A5E000578B97 /* ForEachStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001AD9BC2922A5E000578B97 /* ForEachStore.swift */; };
 		0041A2C8291B1AEF004B53B5 /* IfLetStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0041A2C7291B1AEF004B53B5 /* IfLetStore.swift */; };
 		00DC04292915BE9600283F83 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 00DC04282915BE9600283F83 /* ComposableArchitecture */; };
 		00DC042C2915C19700283F83 /* WithViewStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DC042B2915C19700283F83 /* WithViewStore.swift */; };
@@ -294,7 +294,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0016C9DB2919AD8B00CC0521 /* FullScreenLoaderWithStateStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullScreenLoaderWithStateStore.swift; sourceTree = "<group>"; };
+		001AD9BC2922A5E000578B97 /* ForEachStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForEachStore.swift; sourceTree = "<group>"; };
 		0041A2C7291B1AEF004B53B5 /* IfLetStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IfLetStore.swift; sourceTree = "<group>"; };
 		00DC042B2915C19700283F83 /* WithViewStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithViewStore.swift; sourceTree = "<group>"; };
 		355B2B0F773087003E9F5A49 /* ViewPaddingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewPaddingTests.swift; sourceTree = "<group>"; };
@@ -578,7 +578,7 @@
 		00DC042A2915C16800283F83 /* TCA */ = {
 			isa = PBXGroup;
 			children = (
-				0016C9DB2919AD8B00CC0521 /* FullScreenLoaderWithStateStore.swift */,
+				001AD9BC2922A5E000578B97 /* ForEachStore.swift */,
 				0041A2C7291B1AEF004B53B5 /* IfLetStore.swift */,
 				00DC042B2915C19700283F83 /* WithViewStore.swift */,
 			);
@@ -1089,6 +1089,7 @@
 				F63E926A249FCF92005861F0 /* TransformingModifiers.swift in Sources */,
 				F6119FD62549EECC0000C54A /* Label.swift in Sources */,
 				F6DFD88423830E9F0028E84D /* List.swift in Sources */,
+				001AD9BD2922A5E000578B97 /* ForEachStore.swift in Sources */,
 				CDA84478262B6C3E00C56C98 /* Gesture.swift in Sources */,
 				F6DFD880238303AF0028E84D /* NavigationView.swift in Sources */,
 				F6ECF6D623A695FB000FC591 /* ClassifiedView.swift in Sources */,
@@ -1097,7 +1098,6 @@
 				52A4A7642621F4AE0063E00B /* Overlay.swift in Sources */,
 				523CD480277C98FC00D4FD3A /* VideoPlayer.swift in Sources */,
 				F60EEBDA2382EED0007DB53A /* HStack.swift in Sources */,
-				0016C9DC2919AD8B00CC0521 /* FullScreenLoaderWithStateStore.swift in Sources */,
 				F64057ED238DB1530029D9BA /* ConditionalContent.swift in Sources */,
 				523CD47A277BC8A700D4FD3A /* TimelineView.swift in Sources */,
 				5220904C27763ABA001A899A /* ControlGroup.swift in Sources */,
