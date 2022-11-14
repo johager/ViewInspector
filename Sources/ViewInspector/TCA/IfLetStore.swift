@@ -32,22 +32,14 @@ extension ViewType.IfLetStore: SingleViewContent {
 
 extension ViewType.IfLetStore: MultipleViewContent {
     public static func children(_ content: Content) throws -> LazyGroup<Content> {
-        let file = ViewType.IfLetStore.typePrefix
-//        print("=== \(file).\(#function) ===")
+        let typePrefix = ViewType.IfLetStore.typePrefix
+//        print("=== \(typePrefix).\(#function) ===")
         
         // get the IfLetStore content
         guard let viewWithBodyFromClosure = content.view as? (any ViewWithBodyFromClosure)
-        else { throw InspectionError.viewNotFound(parent: file) }
-        
-//        print(">-- --- --- --- -->")
-//        print("--- \(file).\(#function) - viewWithBodyFromClosure.body: \(viewWithBodyFromClosure.body)")
-//        print(">-- --- --- --- -->")
+        else { throw InspectionError.viewNotFound(parent: typePrefix) }
         
         let content = Content(viewWithBodyFromClosure.body)
-        
-//        print(">-- --- --- --- -->")
-//        print("--- \(file).\(#function) - content: \(content)")
-//        print(">-- --- --- --- -->")
         
         // get the inner WithViewStore content
         guard let innerViewWithBodyFromClosure = content.view as? (any ViewWithBodyFromClosure)
@@ -55,10 +47,6 @@ extension ViewType.IfLetStore: MultipleViewContent {
             // return the IfLetStore "else" content
             return try Inspector.viewsInContainer(view: viewWithBodyFromClosure.body, medium: content.medium)
         }
-        
-//        print(">-- --- --- --- -->")
-//        print("--- \(file).\(#function) - innerViewWithBodyFromClosure.body: \(innerViewWithBodyFromClosure.body)")
-//        print(">-- --- --- --- -->")
         
         // return the IfLetStore "if" content
         return try Inspector.viewsInContainer(view: innerViewWithBodyFromClosure.body, medium: content.medium)
@@ -80,27 +68,16 @@ extension InspectableView where View: MultipleViewContent {
     public func ifLetStore(
         _ index: Int) throws -> InspectableView<ViewType.IfLetStore>
     {
-        let file = ViewType.IfLetStore.typePrefix
-//        print("=== \(#file).\(#function) - index: \(index) ===")
+        let typePrefix = ViewType.IfLetStore.typePrefix
+//        print("=== \(#typePrefix).\(#function) - index: \(index) ===")
 
         let childWrapper = try child(at: index)
-//        print("--- \(file).\(#function) - index: \(index), childWrapper: \(childWrapper)")
-
-//        print("--- \(file).\(#function) - index: \(index), childWrapper.view: \(childWrapper.view)")
 
         guard let viewWithBodyFromClosure = childWrapper.view as? (any ViewWithBodyFromClosure)
-        else { throw InspectionError.viewNotFound(parent: file) }
-
-//        print(">-- --- --- --- -->")
-//        print("--- \(file).\(#function) - viewWithBodyFromClosure: \(viewWithBodyFromClosure)")
-//        print(">-- --- --- --- -->")
+        else { throw InspectionError.viewNotFound(parent: typePrefix) }
 
         // this is the IfLetStore content
         let content = Content(viewWithBodyFromClosure.body)
-        
-//        print(">-- --- --- --- -->")
-//        print("--- \(file).\(#function) - content: \(content)")
-//        print(">-- --- --- --- -->")
         
         guard let innerViewWithBodyFromClosure = content.view as? (any ViewWithBodyFromClosure)
         else {
@@ -108,16 +85,8 @@ extension InspectableView where View: MultipleViewContent {
             return try .init(content, parent: self, index: index, usesContentFromClosure: true)
         }
         
-//        print(">-- --- --- --- -->")
-//        print("--- \(file).\(#function) - innerViewWithBodyFromClosure: \(innerViewWithBodyFromClosure)")
-//        print(">-- --- --- --- -->")
-        
         // this is the WithViewStore content w/in the IfLetStore content
         let innerContent = Content(innerViewWithBodyFromClosure.body)
-        
-//        print(">-- --- --- --- -->")
-//        print("--- \(file).\(#function) - innerContent: \(innerContent)")
-//        print(">-- --- --- --- -->")
         
         return try .init(innerContent, parent: self, index: index, usesContentFromClosure: true)
     }

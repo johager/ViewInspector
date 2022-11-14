@@ -20,6 +20,7 @@ internal extension ViewSearch {
             .init(ViewType.EditButton.self), .init(ViewType.EmptyView.self),
             .init(ViewType.EllipticalGradient.self),
             .init(ViewType.ForEach.self), .init(ViewType.Form.self),
+            .init(ViewType.ForEachStore.self, genericTypeName: nil),
             .init(ViewType.GeometryReader.self),
             .init(ViewType.Group.self), .init(ViewType.GroupBox.self),
             .init(ViewType.HSplitView.self), .init(ViewType.HStack.self),

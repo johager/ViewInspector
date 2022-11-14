@@ -32,18 +32,18 @@ extension ViewType.WithViewStore: SingleViewContent {
 
 extension ViewType.WithViewStore: MultipleViewContent {
     public static func children(_ content: Content) throws -> LazyGroup<Content> {
-        let file = ViewType.WithViewStore.typePrefix
+        let typePrefix = ViewType.WithViewStore.typePrefix
 //        print("=== \(file).\(#function) ===")
         
 //        print(">-- --- --- --- -->")
-//        print("--- \(file).\(#function) - content: \(content)")
+//        print("--- \(typePrefix).\(#function) - content: \(content)")
 //        print(">-- --- --- --- -->")
         
         guard let viewWithBodyFromClosure = content.view as? (any ViewWithBodyFromClosure)
-        else { throw InspectionError.viewNotFound(parent: file) }
+        else { throw InspectionError.viewNotFound(parent: typePrefix) }
         
 //        print(">-- --- --- --- -->")
-//        print("--- \(file).\(#function) - viewWithBodyFromClosure.body: \(viewWithBodyFromClosure.body)")
+//        print("--- \(typePrefix).\(#function) - viewWithBodyFromClosure.body: \(viewWithBodyFromClosure.body)")
 //        print(">-- --- --- --- -->")
         
         return try Inspector.viewsInContainer(view: viewWithBodyFromClosure.body, medium: content.medium)
