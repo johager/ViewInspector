@@ -20,11 +20,9 @@ internal extension ViewSearch {
             .init(ViewType.EditButton.self), .init(ViewType.EmptyView.self),
             .init(ViewType.EllipticalGradient.self),
             .init(ViewType.ForEach.self), .init(ViewType.Form.self),
-            .init(ViewType.ForEachStore.self, genericTypeName: nil),
             .init(ViewType.GeometryReader.self),
             .init(ViewType.Group.self), .init(ViewType.GroupBox.self),
             .init(ViewType.HSplitView.self), .init(ViewType.HStack.self),
-            .init(ViewType.IfLetStore.self, genericTypeName: nil),
             .init(ViewType.Image.self),
             .init(ViewType.Label.self),
             .init(ViewType.LazyHGrid.self), .init(ViewType.LazyHStack.self),
@@ -56,11 +54,19 @@ internal extension ViewSearch {
             .init(ViewType.TupleView.self), .init(ViewType.Toolbar.self),
             .init(ViewType.Toolbar.Item.self, genericTypeName: nil),
             .init(ViewType.Toolbar.ItemGroup.self, genericTypeName: nil),
-            .init(ViewType.WithViewStore.self, genericTypeName: nil),
             .init(ViewType.VideoPlayer.self),
             .init(ViewType.ViewModifierContent.self),
             .init(ViewType.VSplitView.self), .init(ViewType.VStack.self),
-            .init(ViewType.ZStack.self)
+            .init(ViewType.ZStack.self),
+            
+            // NMContentViews
+            .init(ViewType.LazyView.self, genericTypeName: nil),
+            .init(ViewType.WithStateStore.self, genericTypeName: nil),
+            
+            // TCA
+            .init(ViewType.ForEachStore.self, genericTypeName: nil),
+            .init(ViewType.IfLetStore.self, genericTypeName: nil),
+            .init(ViewType.WithViewStore.self, genericTypeName: nil),
         ]
 
         var index = [String: [ViewIdentity]](minimumCapacity: 26) // alphabet

@@ -23,6 +23,10 @@
 /* Begin PBXBuildFile section */
 		001AD9BD2922A5E000578B97 /* ForEachStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001AD9BC2922A5E000578B97 /* ForEachStore.swift */; };
 		0041A2C8291B1AEF004B53B5 /* IfLetStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0041A2C7291B1AEF004B53B5 /* IfLetStore.swift */; };
+		006EDA6E29255CB500FF783A /* ViewWithBodyFromClosure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006EDA6D29255CB500FF783A /* ViewWithBodyFromClosure.swift */; };
+		00AB043C292533660044B7DD /* LazyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AB043B292533660044B7DD /* LazyView.swift */; };
+		00AB043F292534230044B7DD /* NMContentViews in Frameworks */ = {isa = PBXBuildFile; productRef = 00AB043E292534230044B7DD /* NMContentViews */; };
+		00AB04432925351B0044B7DD /* WithStateStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AB04422925351B0044B7DD /* WithStateStore.swift */; };
 		00DC04292915BE9600283F83 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 00DC04282915BE9600283F83 /* ComposableArchitecture */; };
 		00DC042C2915C19700283F83 /* WithViewStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DC042B2915C19700283F83 /* WithViewStore.swift */; };
 		355B2D57BFF536BCD0B555B8 /* ViewPaddingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355B2B0F773087003E9F5A49 /* ViewPaddingTests.swift */; };
@@ -296,6 +300,9 @@
 /* Begin PBXFileReference section */
 		001AD9BC2922A5E000578B97 /* ForEachStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForEachStore.swift; sourceTree = "<group>"; };
 		0041A2C7291B1AEF004B53B5 /* IfLetStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IfLetStore.swift; sourceTree = "<group>"; };
+		006EDA6D29255CB500FF783A /* ViewWithBodyFromClosure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewWithBodyFromClosure.swift; sourceTree = "<group>"; };
+		00AB043B292533660044B7DD /* LazyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LazyView.swift; sourceTree = "<group>"; };
+		00AB04422925351B0044B7DD /* WithStateStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithStateStore.swift; sourceTree = "<group>"; };
 		00DC042B2915C19700283F83 /* WithViewStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithViewStore.swift; sourceTree = "<group>"; };
 		355B2B0F773087003E9F5A49 /* ViewPaddingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewPaddingTests.swift; sourceTree = "<group>"; };
 		520E915B26E64F210090BD1F /* EnvironmentInjection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentInjection.swift; sourceTree = "<group>"; };
@@ -559,6 +566,7 @@
 			files = (
 				52510DCE25E1486200A84CB8 /* SwiftUI.framework in Frameworks */,
 				F62D69902507FA0C00335BCC /* XCTest.framework in Frameworks */,
+				00AB043F292534230044B7DD /* NMContentViews in Frameworks */,
 				00DC04292915BE9600283F83 /* ComposableArchitecture in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -575,11 +583,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		00AB043A2925333D0044B7DD /* NMContentViews */ = {
+			isa = PBXGroup;
+			children = (
+				00AB043B292533660044B7DD /* LazyView.swift */,
+				00AB04422925351B0044B7DD /* WithStateStore.swift */,
+			);
+			path = NMContentViews;
+			sourceTree = "<group>";
+		};
 		00DC042A2915C16800283F83 /* TCA */ = {
 			isa = PBXGroup;
 			children = (
 				001AD9BC2922A5E000578B97 /* ForEachStore.swift */,
 				0041A2C7291B1AEF004B53B5 /* IfLetStore.swift */,
+				006EDA6D29255CB500FF783A /* ViewWithBodyFromClosure.swift */,
 				00DC042B2915C19700283F83 /* WithViewStore.swift */,
 			);
 			path = TCA;
@@ -648,6 +666,7 @@
 				F68108A423A5833D00B32145 /* Modifiers */,
 				F60EEBBD2382EED0007DB53A /* SwiftUI */,
 				00DC042A2915C16800283F83 /* TCA */,
+				00AB043A2925333D0044B7DD /* NMContentViews */,
 			);
 			path = ViewInspector;
 			sourceTree = "<group>";
@@ -976,11 +995,13 @@
 			buildRules = (
 			);
 			dependencies = (
+				00AB0441292534670044B7DD /* PBXTargetDependency */,
 				009559FD2916A79C00A8D17F /* PBXTargetDependency */,
 			);
 			name = ViewInspector;
 			packageProductDependencies = (
 				00DC04282915BE9600283F83 /* ComposableArchitecture */,
+				00AB043E292534230044B7DD /* NMContentViews */,
 			);
 			productName = ViewInspector;
 			productReference = "ViewInspector::ViewInspector::Product" /* ViewInspector.framework */;
@@ -1031,6 +1052,7 @@
 			mainGroup = OBJ_5;
 			packageReferences = (
 				00DC04272915BE9600283F83 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
+				00AB043D292534230044B7DD /* XCRemoteSwiftPackageReference "NMContentViews" */,
 			);
 			productRefGroup = OBJ_26 /* Products */;
 			projectDirPath = "";
@@ -1156,6 +1178,7 @@
 				F60EEBDE2382EED0007DB53A /* ForEach.swift in Sources */,
 				F6C15A0D254A05A4000240F1 /* LazyVGrid.swift in Sources */,
 				5250764B2651800800ADE4E7 /* ActionSheet.swift in Sources */,
+				006EDA6E29255CB500FF783A /* ViewWithBodyFromClosure.swift in Sources */,
 				F60EEBCD2382EED0007DB53A /* Inspector.swift in Sources */,
 				F64105C4257BF9A70033D82D /* ViewSearch.swift in Sources */,
 				F6D933BF2385F5CB00358E0E /* TextField.swift in Sources */,
@@ -1164,6 +1187,7 @@
 				F6C15AC7254EDA7B000240F1 /* TextEditor.swift in Sources */,
 				F605E76525606AA300DE9B07 /* Popover.swift in Sources */,
 				F66EDB5723ED6EA200A01B9F /* Shape.swift in Sources */,
+				00AB04432925351B0044B7DD /* WithStateStore.swift in Sources */,
 				F609EFBD23A40B8800B9256A /* DelayedPreferenceView.swift in Sources */,
 				F6684BF223AA554500DECCB3 /* PasteButton.swift in Sources */,
 				F60EEBD12382EED0007DB53A /* DatePicker.swift in Sources */,
@@ -1182,6 +1206,7 @@
 				F60EEBD52382EED0007DB53A /* AnyView.swift in Sources */,
 				F6F08E6623A29FE4001F04DF /* SubscriptionView.swift in Sources */,
 				F6D9339F2385B46A00358E0E /* NavigationLink.swift in Sources */,
+				00AB043C292533660044B7DD /* LazyView.swift in Sources */,
 				F6ECF6D423A68BA4000FC591 /* PositioningModifiers.swift in Sources */,
 				F6DB5A01253510350056FC83 /* TextInputModifiers.swift in Sources */,
 				DDCA44AD26FA64F500138898 /* EllipticalGradient.swift in Sources */,
@@ -1357,6 +1382,10 @@
 			isa = PBXTargetDependency;
 			productRef = 009559FE2916A7A300A8D17F /* ComposableArchitecture */;
 		};
+		00AB0441292534670044B7DD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 00AB0440292534670044B7DD /* NMContentViews */;
+		};
 		OBJ_56 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "ViewInspector::ViewInspectorTests" /* ViewInspectorTests */;
@@ -1428,7 +1457,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_SWIFT_FLAGS = "$(inherited) -DXcode";
@@ -1458,7 +1487,7 @@
 				);
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = ViewInspector.xcodeproj/ViewInspector_Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(TOOLCHAIN_DIR)/usr/lib/swift/macosx",
@@ -1492,7 +1521,7 @@
 				);
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = ViewInspector.xcodeproj/ViewInspector_Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(TOOLCHAIN_DIR)/usr/lib/swift/macosx",
@@ -1552,7 +1581,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				OTHER_SWIFT_FLAGS = "$(inherited) -DXcode";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1708,6 +1737,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		00AB043D292534230044B7DD /* XCRemoteSwiftPackageReference "NMContentViews" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/johager/NMContentViews";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		00DC04272915BE9600283F83 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture";
@@ -1728,6 +1765,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 00DC04272915BE9600283F83 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
 			productName = ComposableArchitecture;
+		};
+		00AB043E292534230044B7DD /* NMContentViews */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 00AB043D292534230044B7DD /* XCRemoteSwiftPackageReference "NMContentViews" */;
+			productName = NMContentViews;
+		};
+		00AB0440292534670044B7DD /* NMContentViews */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 00AB043D292534230044B7DD /* XCRemoteSwiftPackageReference "NMContentViews" */;
+			productName = NMContentViews;
 		};
 		00DC04282915BE9600283F83 /* ComposableArchitecture */ = {
 			isa = XCSwiftPackageProductDependency;
