@@ -24,8 +24,8 @@
 		001AD9BD2922A5E000578B97 /* ForEachStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001AD9BC2922A5E000578B97 /* ForEachStore.swift */; };
 		0041A2C8291B1AEF004B53B5 /* IfLetStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0041A2C7291B1AEF004B53B5 /* IfLetStore.swift */; };
 		006EDA6E29255CB500FF783A /* ViewWithBodyFromClosure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006EDA6D29255CB500FF783A /* ViewWithBodyFromClosure.swift */; };
+		0096FB002925881F00888DCD /* NMContentViews in Frameworks */ = {isa = PBXBuildFile; productRef = 0096FAFF2925881F00888DCD /* NMContentViews */; };
 		00AB043C292533660044B7DD /* LazyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AB043B292533660044B7DD /* LazyView.swift */; };
-		00AB043F292534230044B7DD /* NMContentViews in Frameworks */ = {isa = PBXBuildFile; productRef = 00AB043E292534230044B7DD /* NMContentViews */; };
 		00AB04432925351B0044B7DD /* WithStateStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AB04422925351B0044B7DD /* WithStateStore.swift */; };
 		00DC04292915BE9600283F83 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 00DC04282915BE9600283F83 /* ComposableArchitecture */; };
 		00DC042C2915C19700283F83 /* WithViewStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DC042B2915C19700283F83 /* WithViewStore.swift */; };
@@ -566,7 +566,7 @@
 			files = (
 				52510DCE25E1486200A84CB8 /* SwiftUI.framework in Frameworks */,
 				F62D69902507FA0C00335BCC /* XCTest.framework in Frameworks */,
-				00AB043F292534230044B7DD /* NMContentViews in Frameworks */,
+				0096FB002925881F00888DCD /* NMContentViews in Frameworks */,
 				00DC04292915BE9600283F83 /* ComposableArchitecture in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1001,7 +1001,7 @@
 			name = ViewInspector;
 			packageProductDependencies = (
 				00DC04282915BE9600283F83 /* ComposableArchitecture */,
-				00AB043E292534230044B7DD /* NMContentViews */,
+				0096FAFF2925881F00888DCD /* NMContentViews */,
 			);
 			productName = ViewInspector;
 			productReference = "ViewInspector::ViewInspector::Product" /* ViewInspector.framework */;
@@ -1052,7 +1052,7 @@
 			mainGroup = OBJ_5;
 			packageReferences = (
 				00DC04272915BE9600283F83 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
-				00AB043D292534230044B7DD /* XCRemoteSwiftPackageReference "NMContentViews" */,
+				0096FAFE2925881F00888DCD /* XCRemoteSwiftPackageReference "NMContentViews" */,
 			);
 			productRefGroup = OBJ_26 /* Products */;
 			projectDirPath = "";
@@ -1737,6 +1737,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		0096FAFE2925881F00888DCD /* XCRemoteSwiftPackageReference "NMContentViews" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/johager/NMContentViews";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.0;
+			};
+		};
 		00AB043D292534230044B7DD /* XCRemoteSwiftPackageReference "NMContentViews" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/johager/NMContentViews";
@@ -1766,9 +1774,9 @@
 			package = 00DC04272915BE9600283F83 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
 			productName = ComposableArchitecture;
 		};
-		00AB043E292534230044B7DD /* NMContentViews */ = {
+		0096FAFF2925881F00888DCD /* NMContentViews */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 00AB043D292534230044B7DD /* XCRemoteSwiftPackageReference "NMContentViews" */;
+			package = 0096FAFE2925881F00888DCD /* XCRemoteSwiftPackageReference "NMContentViews" */;
 			productName = NMContentViews;
 		};
 		00AB0440292534670044B7DD /* NMContentViews */ = {

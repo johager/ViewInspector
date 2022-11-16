@@ -14,7 +14,7 @@ let package = Package(
             name: "ViewInspector", targets: ["ViewInspector"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/johager/NMContentViews", branch: "main"),
+        .package(url: "https://github.com/johager/NMContentViews", from: "0.1.0"),
         .package(url: "https://github.com/pointfreeco/swift-composable-architecture", from: "0.41.0"),
     ],
     targets: [
