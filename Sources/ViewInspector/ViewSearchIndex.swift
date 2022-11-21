@@ -85,7 +85,6 @@ internal extension ViewSearch {
     }()
     
     private static func identify(_ content: Content) -> ViewIdentity? {
-//        print("=== ViewSearch.\(#function) ===")
         if let customMapping = content.view as? CustomViewIdentityMapping {
             let viewType = customMapping.viewTypeForSearch
             let letter = String(viewType.typePrefix.prefix(1))
@@ -96,8 +95,6 @@ internal extension ViewSearch {
         }
         let shortName = Inspector.typeName(value: content.view, generics: .remove)
         let fullName = Inspector.typeName(value: content.view, namespaced: true, generics: .remove)
-//        print("--- ViewSearch.\(#function) - shortName: '\(shortName)'")
-//        print("--- ViewSearch.\(#function) - fullName: '\(fullName)'")
         
         if shortName.count > 0,
            let identity = index[String(shortName.prefix(1))]?
@@ -123,7 +120,6 @@ internal extension ViewSearch {
     }
     
     static func identifyAndInstantiate(_ view: UnwrappedView, index: Int?) -> (ViewIdentity, UnwrappedView)? {
-//        print("=== ViewSearch.\(#function) ===")
         guard let identity = ViewSearch.identify(view.content),
               let instance = { () -> UnwrappedView? in
                     if view.isUnwrappedSupplementaryChild {

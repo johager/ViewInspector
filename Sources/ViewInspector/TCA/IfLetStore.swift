@@ -2,10 +2,6 @@ import ComposableArchitecture
 import Foundation
 import SwiftUI
 
-// MARK: - IfLetStore + ViewWithBodyFromClosure
-
-extension IfLetStore: ViewWithBodyFromClosure { }
-
 // MARK: - ViewType.IfLetStore
 
 extension ViewType {
@@ -17,11 +13,14 @@ extension ViewType {
     }
 }
 
+// MARK: - IfLetStore + ViewWithBodyFromClosure
+
+extension IfLetStore: ViewWithBodyFromClosure { }
+
 // MARK: - ViewType.IfLetStore + SingleViewContent
 
 extension ViewType.IfLetStore: SingleViewContent {
     public static func child(_ content: Content) throws -> Content {
-//        print("=== IfLetStore.\(#function) ===")
         let view = try Inspector.attribute(label: "content", value: content.view)
         let medium = content.medium.resettingViewModifiers()
         return try Inspector.unwrap(view: view, medium: medium)
@@ -32,12 +31,10 @@ extension ViewType.IfLetStore: SingleViewContent {
 
 extension ViewType.IfLetStore: MultipleViewContent {
     public static func children(_ content: Content) throws -> LazyGroup<Content> {
-        let typePrefix = ViewType.IfLetStore.typePrefix
-//        print("=== \(typePrefix).\(#function) ===")
         
         // get the IfLetStore content
         guard let viewWithBodyFromClosure = content.view as? (any ViewWithBodyFromClosure)
-        else { throw InspectionError.viewNotFound(parent: typePrefix) }
+        else { throw InspectionError.viewNotFound(parent: ViewType.IfLetStore.typePrefix) }
         
         let content = Content(viewWithBodyFromClosure.body)
         
@@ -53,28 +50,16 @@ extension ViewType.IfLetStore: MultipleViewContent {
     }
 }
 
-// MARK: - Extraction from SingleViewContent parent
-
-extension InspectableView where View: SingleViewContent {
-    public func ifLetStore() throws -> InspectableView<ViewType.IfLetStore> {
-//        print("=== IfLetStore.\(#function) ===")
-        return try .init(try child(), parent: self)
-    }
-}
-
 // MARK: - Extraction from MultipleViewContent parent
 
 extension InspectableView where View: MultipleViewContent {
     public func ifLetStore(
         _ index: Int) throws -> InspectableView<ViewType.IfLetStore>
     {
-        let typePrefix = ViewType.IfLetStore.typePrefix
-//        print("=== \(#typePrefix).\(#function) - index: \(index) ===")
-
         let childWrapper = try child(at: index)
 
         guard let viewWithBodyFromClosure = childWrapper.view as? (any ViewWithBodyFromClosure)
-        else { throw InspectionError.viewNotFound(parent: typePrefix) }
+        else { throw InspectionError.viewNotFound(parent: ViewType.IfLetStore.typePrefix) }
 
         // this is the IfLetStore content
         let content = Content(viewWithBodyFromClosure.body)
