@@ -1,13 +1,21 @@
 <h1 align="center">ViewInspector 🕵️‍♂️ for SwiftUI</h1>
 
-<span align="center">
-  
-![Platform](https://img.shields.io/badge/platform-iOS%20%7C%20macOS%20%7C%20tvOS%20%7C%20watchOS-lightgrey) [![Build Status](https://travis-ci.com/nalexn/ViewInspector.svg?branch=master)](https://travis-ci.com/nalexn/ViewInspector) [![codecov](https://codecov.io/gh/nalexn/ViewInspector/branch/master/graph/badge.svg)](https://codecov.io/gh/nalexn/ViewInspector)
-
-</span>
-
 **ViewInspector** is a library for unit testing SwiftUI views.
 It allows for traversing a view hierarchy at runtime providing direct access to the underlying `View` structs.
+
+This package is a fork of https://github.com/nalexn/ViewInspector extended to support
+- [NMContentViews](https://git.nmlv.nml.com/cx-mobile/nmcontentviews) that contains SwiftUI `View` structs that have "var body: Content" instead of "var body: some View".
+- [The Composable Architecture](https://github.com/pointfreeco/swift-composable-architecture)
+
+In order to inspect popup views, rename the standard SwiftUI views according to
+
+| Standard | Inspectable|
+| --- | --- |
+| `alert` | `inspectableAlert` |
+| `actionSheet` | `inspectableActionSheet` |
+| `sheet` | `inspectableSheet` |
+| `fullScreenCover` | `inspectableFullScreenCover` |
+| `popover` | `inspectablePopover` |
 
 ## Why?
 
