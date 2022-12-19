@@ -10,6 +10,15 @@
       }
     },
     {
+      "identity" : "nmcontentviews",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/johager/NMContentViews",
+      "state" : {
+        "revision" : "69f44e5acc910fa75d58e835396267dd4d52b0a8",
+        "version" : "0.1.0"
+      }
+    },
+    {
       "identity" : "swift-case-paths",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/pointfreeco/swift-case-paths",

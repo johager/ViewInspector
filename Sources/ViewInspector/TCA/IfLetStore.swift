@@ -13,9 +13,9 @@ extension ViewType {
     }
 }
 
-// MARK: - IfLetStore + ViewWithBodyFromClosure
+// MARK: - IfLetStore + ViewWithBodyAsContent
 
-extension IfLetStore: ViewWithBodyFromClosure { }
+extension IfLetStore: ViewWithBodyAsContent { }
 
 // MARK: - ViewType.IfLetStore + SingleViewContent
 
@@ -33,20 +33,20 @@ extension ViewType.IfLetStore: MultipleViewContent {
     public static func children(_ content: Content) throws -> LazyGroup<Content> {
         
         // get the IfLetStore content
-        guard let viewWithBodyFromClosure = content.view as? (any ViewWithBodyFromClosure)
+        guard let viewWithBodyAsContent = content.view as? (any ViewWithBodyAsContent)
         else { throw InspectionError.viewNotFound(parent: ViewType.IfLetStore.typePrefix) }
         
-        let content = Content(viewWithBodyFromClosure.body)
+        let content = Content(viewWithBodyAsContent.body)
         
         // get the inner WithViewStore content
-        guard let innerViewWithBodyFromClosure = content.view as? (any ViewWithBodyFromClosure)
+        guard let innerViewWithBodyAsContent = content.view as? (any ViewWithBodyAsContent)
         else {
             // return the IfLetStore "else" content
-            return try Inspector.viewsInContainer(view: viewWithBodyFromClosure.body, medium: content.medium)
+            return try Inspector.viewsInContainer(view: viewWithBodyAsContent.body, medium: content.medium)
         }
         
         // return the IfLetStore "if" content
-        return try Inspector.viewsInContainer(view: innerViewWithBodyFromClosure.body, medium: content.medium)
+        return try Inspector.viewsInContainer(view: innerViewWithBodyAsContent.body, medium: content.medium)
     }
 }
 
@@ -58,20 +58,20 @@ extension InspectableView where View: MultipleViewContent {
     {
         let childWrapper = try child(at: index)
 
-        guard let viewWithBodyFromClosure = childWrapper.view as? (any ViewWithBodyFromClosure)
+        guard let viewWithBodyAsContent = childWrapper.view as? (any ViewWithBodyAsContent)
         else { throw InspectionError.viewNotFound(parent: ViewType.IfLetStore.typePrefix) }
 
         // this is the IfLetStore content
-        let content = Content(viewWithBodyFromClosure.body)
+        let content = Content(viewWithBodyAsContent.body)
         
-        guard let innerViewWithBodyFromClosure = content.view as? (any ViewWithBodyFromClosure)
+        guard let innerViewWithBodyAsContent = content.view as? (any ViewWithBodyAsContent)
         else {
             // return the IfLetStore "else" content
             return try .init(content, parent: self, index: index, usesContentFromClosure: true)
         }
         
         // this is the WithViewStore content w/in the IfLetStore content
-        let innerContent = Content(innerViewWithBodyFromClosure.body)
+        let innerContent = Content(innerViewWithBodyAsContent.body)
         
         return try .init(innerContent, parent: self, index: index, usesContentFromClosure: true)
     }

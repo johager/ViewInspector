@@ -14,9 +14,9 @@ extension ViewType {
     }
 }
 
-// MARK: - WithStateStore + ViewWithBodyFromClosure
+// MARK: - WithStateStore + ViewWithBodyAsContent
 
-extension WithStateStore: ViewWithBodyFromClosure { }
+extension WithStateStore: ViewWithBodyAsContent { }
 
 // MARK: - ViewType.WithViewStore + SingleViewContent
 
@@ -33,10 +33,10 @@ extension ViewType.WithStateStore: SingleViewContent {
 extension ViewType.WithStateStore: MultipleViewContent {
     public static func children(_ content: Content) throws -> LazyGroup<Content> {
         
-        guard let viewWithBodyFromClosure = content.view as? (any ViewWithBodyFromClosure)
+        guard let viewWithBodyAsContent = content.view as? (any ViewWithBodyAsContent)
         else { throw InspectionError.viewNotFound(parent: ViewType.WithStateStore.typePrefix) }
         
-        return try Inspector.viewsInContainer(view: viewWithBodyFromClosure.body, medium: content.medium)
+        return try Inspector.viewsInContainer(view: viewWithBodyAsContent.body, medium: content.medium)
     }
 }
 
@@ -48,10 +48,10 @@ extension InspectableView where View: MultipleViewContent {
     {
         let childWrapper = try child(at: index)
 
-        guard let viewWithBodyFromClosure = childWrapper.view as? (any ViewWithBodyFromClosure)
+        guard let viewWithBodyAsContent = childWrapper.view as? (any ViewWithBodyAsContent)
         else { throw InspectionError.viewNotFound(parent: ViewType.WithStateStore.typePrefix) }
 
-        let content = Content(viewWithBodyFromClosure.body)
+        let content = Content(viewWithBodyAsContent.body)
         return try .init(content, parent: self, index: index, usesContentFromClosure: true)
     }
 }

@@ -13,9 +13,9 @@ extension ViewType {
     }
 }
 
-// MARK: - ForEachStore + ViewWithBodyFromClosure
+// MARK: - ForEachStore + ViewWithBodyAsContent
 
-extension ForEachStore: ViewWithBodyFromClosure { }
+extension ForEachStore: ViewWithBodyAsContent { }
 
 // MARK: - ViewType.ForEachStore + SingleViewContent
 
@@ -32,10 +32,10 @@ extension ViewType.ForEachStore: SingleViewContent {
 extension ViewType.ForEachStore: MultipleViewContent {
     public static func children(_ content: Content) throws -> LazyGroup<Content> {
         
-        guard let viewWithBodyFromClosure = content.view as? (any ViewWithBodyFromClosure)
+        guard let viewWithBodyAsContent = content.view as? (any ViewWithBodyAsContent)
         else { throw InspectionError.viewNotFound(parent: ViewType.ForEachStore.typePrefix) }
         
-        return try Inspector.viewsInContainer(view: viewWithBodyFromClosure.body, medium: content.medium)
+        return try Inspector.viewsInContainer(view: viewWithBodyAsContent.body, medium: content.medium)
     }
 }
 
@@ -47,10 +47,10 @@ extension InspectableView where View: MultipleViewContent {
     {
         let childWrapper = try child(at: index)
 
-        guard let viewWithBodyFromClosure = childWrapper.view as? (any ViewWithBodyFromClosure)
+        guard let viewWithBodyAsContent = childWrapper.view as? (any ViewWithBodyAsContent)
         else { throw InspectionError.viewNotFound(parent: ViewType.ForEachStore.typePrefix) }
 
-        let content = Content(viewWithBodyFromClosure.body)
+        let content = Content(viewWithBodyAsContent.body)
         return try .init(content, parent: self, index: index, usesContentFromClosure: true)
     }
 }

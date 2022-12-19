@@ -1,9 +1,9 @@
 import Foundation
 //import SwiftUI
 
-// MARK: - ViewWithBodyFromClosure
+// MARK: - ViewWithBodyAsContent
 
-public protocol ViewWithBodyFromClosure {
+public protocol ViewWithBodyAsContent {
     associatedtype Content
     var body: Content { get }
 }
